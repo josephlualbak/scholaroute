@@ -162,3 +162,9 @@ async def health():
     has_session = app.state.session is not None
     has_allocations = has_session and app.state.session.allocations_df is not None and not app.state.session.allocations_df.empty
     return {"status": "ok", "session": has_session, "allocations_loaded": bool(has_allocations)}
+#-----------------------------
+# This section is for online demployment
+#--------------------------------
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 8000))  # Render provides PORT
+    uvicorn.run("api:app", host="0.0.0.0", port=port, reload=False)
