@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ScholaRoute - Smart Student Allocation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f6f8;
+            color: #2c3e50;
+        }
+        h1 {
+            text-align: center;
+            color: #34495e;
+        }
+        h2 {
+            color: #2980b9;
+        }
+        .container {
+            max-width: 1100px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+        }
+        input[type="file"], input[type="text"] {
+            padding: 5px;
+            margin: 5px;
+        }
+        button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            margin: 5px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #2980b9;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #3498db;
+            color: white;
+        }
+        .override-form {
+            margin-top: 20px;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #ecf0f1;
+        }
+        .pdf-button {
+            background-color: #27ae60;
+        }
+        .pdf-button:hover {
+            background-color: #1e8449;
+        }
+        .csv-button {
+            background-color: #e67e22;
+        }
+        .csv-button:hover {
+            background-color: #ca6f1e;
+        }
+        .report-link {
+            color: #e67e22;
+            text-decoration: none;
+        }
+        .report-link:hover {
+            text-decoration: underline;
+        }
+        .center {
+            text-align: center;
+        }
+        .note {
+            font-size: 0.9em;
+            color: #7f8c8d;
+        }
+        th.rotate {
+          writing-mode: vertical-rl;
+          transform: rotate(180deg);
+          padding: 4px 2px;
+      }
+      table th, table td {
+        padding: 4px 6px;
+        font-size: 10px;
+    }
+    .table-container {
+        overflow-x: auto;
+        width: 100%;
+    }
+    table {
+        min-width: 1000px; /* ensures table doesn’t shrink too much */
+    }
+
+
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>ScholaRoute - Smart Student Allocation</h1>
+    <img src="/static/ScholaRoute-Logo.png" alt="ScholaRoute Logo" style="width: 15%; "/>
+
+    <h2>Upload Student Records (Excel)</h2>
+    <p class="note">Your Excel file must include: Student ID, FirstName, LastName, Gender, Section, all subject columns, and Choice 1–3.</p>
+    <form id="uploadForm">
+        <input type="file" id="excelFile" required>
+        <button type="submit">Upload & Allocate</button>
+    </form>
+
+    <h2>Student Allocations</h2>
+    <div id="allocationsTable" class="center">
+        <p>No allocations yet. Upload a file to begin.</p>
+    </div>
+
+    <h2>Manual Override</h2>
+    <div class="override-form">
+        <form id="overrideForm">
+            <label>Student ID:</label>
+            <input type="text" id="studentId" required>
+            <label>University:</label>
+            <input type="text" id="university" required>
+            <label>Course:</label>
+            <input type="text" id="course" required>
+            <button type="submit">Apply Override</button>
+        </form>
+    </div>
+
+    <h2>Download Reports</h2>
+    <button class="pdf-button" onclick="downloadFullPDF()">Full Allocations PDF</button>
+    <button class="csv-button" onclick="downloadCSV()">Full Allocations CSV</button>
+</div>
+
+<script>
+    document.getElementById("uploadForm").addEventListener("submit", async function(e){
+        e.preventDefault();
+        let fileInput = document.getElementById("excelFile");
+        if (!fileInput.files.length) {
+            alert("Please select an Excel file first.");
+            return;
+        }
+        let formData = new FormData();
+        formData.append("file", fileInput.files[0]);
+
+        const res = await fetch("/allocate", { method: "POST", body: formData });
+        if (!res.ok) {
+            const err = await res.json();
+            alert("Error: " + err.detail);
+            return;
+        }
+        const html = await res.text();
+        document.getElementById("allocationsTable").innerHTML = html;
+        enhanceAllocationsTable();
+    });
+
+    document.getElementById("overrideForm").addEventListener("submit", async function(e){
+        e.preventDefault();
+        const studentId = document.getElementById("studentId").value;
+        const university = document.getElementById("university").value;
+        const course = document.getElementById("course").value;
+
+        const res = await fetch("/override", {
+            method: "POST",
+            body: new URLSearchParams({
+                student_id: studentId,
+                university: university,
+                course: course
+            })
+        });
+
+        if (!res.ok) {
+            const err = await res.json();
+            alert("Error: " + err.detail);
+            return;
+        }
+        alert("Override applied for Student ID " + studentId);
+        document.getElementById("uploadForm").dispatchEvent(new Event("submit"));
+    });
+
+    async function downloadFullPDF() {
+        const res = await fetch("/download_allocations/pdf");
+        if (res.status === 200) {
+            const blob = await res.blob();
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = "allocations_full.pdf";
+            document.body.appendChild(a);
+            a.click();
+            a.remove();
+        } else {
+            alert("No allocations available yet.");
+        }
+    }
+
+    async function downloadCSV() {
+        const res = await fetch("/download_allocations/csv");
+        if (res.status === 200) {
+            const blob = await res.blob();
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = "allocations.csv";
+            document.body.appendChild(a);
+            a.click();
+            a.remove();
+        } else {
+            alert("No allocations available yet.");
+        }
+    }
+
+    function enhanceAllocationsTable() {
+        const table = document.querySelector("#allocationsTable table");
+        if (!table) return;
+
+        const headerRow = table.querySelector("tr");
+        if (headerRow && !headerRow.querySelector(".report-col")) {
+            const th = document.createElement("th");
+            th.textContent = "Report";
+            th.classList.add("report-col");
+            headerRow.appendChild(th);
+        }
+
+        const rows = table.querySelectorAll("tr");
+        rows.forEach((row, idx) => {
+            if (idx === 0) return;
+            const studentIdCell = row.querySelector("td");
+            if (!studentIdCell) return;
+            const studentId = studentIdCell.textContent.trim();
+
+            const td = document.createElement("td");
+            td.innerHTML = `<a class="report-link" href="/download_report/${studentId}" target="_blank">PDF</a>`;
+            row.appendChild(td);
+        });
+    }
+</script>
+</body>
+</html>
