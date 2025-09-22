@@ -1,5 +1,6 @@
 # api.py
 import os
+import uvicorn
 from typing import Optional
 
 from fastapi import FastAPI, UploadFile, File, Form, Request, HTTPException
