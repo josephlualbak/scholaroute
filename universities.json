@@ -1,0 +1,256 @@
+[
+  {
+    "name": "University of Juba",
+    "courses": [
+      {
+        "name": "Electrical Engineering",
+        "category": "STEM",
+        "allowed_sections": ["Science"],
+        "min_scores": { "aggregate": 550, "Mathematics": 70, "Additional Math": 70, "Physics": 65 }
+      },
+      {
+        "name": "Mechanical Engineering",
+        "category": "STEM",
+        "allowed_sections": ["Science"],
+        "min_scores": { "aggregate": 540, "Mathematics": 68, "Physics": 62, "Additional Math": 55 }
+      },
+      {
+        "name": "Computer Engineering",
+        "category": "STEM",
+        "allowed_sections": ["Science"],
+        "min_scores": { "aggregate": 530, "Mathematics": 68, "Physics": 58, "ICT": 60 }
+      },
+      {
+        "name": "Computer Science",
+        "category": "STEM",
+        "allowed_sections": ["Science"],
+        "min_scores": { "aggregate": 500, "Mathematics": 65, "English": 60 }
+      },
+      {
+        "name": "Software Engineering",
+        "category": "STEM",
+        "allowed_sections": ["Science"],
+        "min_scores": { "aggregate": 520, "Mathematics": 66, "ICT": 62, "English": 58 }
+      },
+      {
+        "name": "Medicine",
+        "category": "STEM",
+        "allowed_sections": ["Science"],
+        "min_scores": { "aggregate": 600, "Biology": 70, "Chemistry": 65, "English": 60 }
+      },
+      {
+        "name": "Nursing",
+        "category": "STEM",
+        "allowed_sections": ["Science"],
+        "min_scores": { "aggregate": 480, "Biology": 55, "English": 55 }
+      },
+      {
+        "name": "Public Health",
+        "category": "STEM",
+        "allowed_sections": ["Science"],
+        "min_scores": { "aggregate": 470, "Biology": 55, "English": 55 }
+      },
+      {
+        "name": "Pharmacy",
+        "category": "STEM",
+        "allowed_sections": ["Science"],
+        "min_scores": { "aggregate": 590, "Chemistry": 68, "Biology": 66, "English": 58 }
+      },
+      {
+        "name": "Medical Laboratory Science",
+        "category": "STEM",
+        "allowed_sections": ["Science"],
+        "min_scores": { "aggregate": 540, "Biology": 60, "Chemistry": 60, "English": 55 }
+      },
+      {
+        "name": "Media and Mass Communication",
+        "category": "Arts",
+        "allowed_sections": ["Art"],
+        "min_scores": { "aggregate": 460, "English": 60 }
+      },
+      {
+        "name": "Journalism",
+        "category": "Arts",
+        "allowed_sections": ["Art"],
+        "min_scores": { "aggregate": 460, "English": 62 }
+      },
+      {
+        "name": "Political Science",
+        "category": "Arts",
+        "allowed_sections": ["Art"],
+        "min_scores": { "aggregate": 470, "English": 58, "History": 55 }
+      },
+      {
+        "name": "Law",
+        "category": "Arts",
+        "allowed_sections": ["Art"],
+        "min_scores": { "aggregate": 480, "English": 65, "History": 60 }
+      },
+      {
+        "name": "Economics",
+        "category": "Arts",
+        "allowed_sections": ["Art", "Science"],
+        "min_scores": { "aggregate": 470, "Mathematics": 55, "English": 55 }
+      },
+      {
+        "name": "Business Administration",
+        "category": "Arts",
+        "allowed_sections": ["Art", "Science"],
+        "min_scores": { "aggregate": 460, "Commerce": 55, "English": 50 }
+      }
+    ]
+  },
+  {
+    "name": "University of Bahr El Ghazal",
+    "courses": [
+      {
+        "name": "Civil Engineering",
+        "category": "STEM",
+        "allowed_sections": ["Science"],
+        "min_scores": { "aggregate": 540, "Mathematics": 65, "Physics": 60 }
+      },
+      {
+        "name": "Architecture",
+        "category": "STEM",
+        "allowed_sections": ["Science"],
+        "min_scores": { "aggregate": 520, "Mathematics": 60, "Physics": 55, "Additional Math": 50 }
+      },
+      {
+        "name": "Urban Planning",
+        "category": "STEM",
+        "allowed_sections": ["Science", "Art"],
+        "min_scores": { "aggregate": 500, "Mathematics": 55, "Geography": 55 }
+      },
+      {
+        "name": "Education (Science)",
+        "category": "STEM",
+        "allowed_sections": ["Science"],
+        "min_scores": { "aggregate": 460, "Mathematics": 55, "English": 55 }
+      },
+      {
+        "name": "Education (Arts)",
+        "category": "Arts",
+        "allowed_sections": ["Art"],
+        "min_scores": { "aggregate": 450, "English": 55, "History": 50 }
+      },
+      {
+        "name": "Business Administration",
+        "category": "Arts",
+        "allowed_sections": ["Art", "Science"],
+        "min_scores": { "aggregate": 460, "Commerce": 55, "English": 50 }
+      },
+      {
+        "name": "Accounting",
+        "category": "Arts",
+        "allowed_sections": ["Art", "Science"],
+        "min_scores": { "aggregate": 470, "Accounting": 60 }
+      },
+      {
+        "name": "Banking and Finance",
+        "category": "Arts",
+        "allowed_sections": ["Art", "Science"],
+        "min_scores": { "aggregate": 470, "Mathematics": 55, "English": 55 }
+      }
+    ]
+  },
+  {
+    "name": "Upper Nile University",
+    "courses": [
+      {
+        "name": "Agriculture",
+        "category": "STEM",
+        "allowed_sections": ["Science"],
+        "min_scores": { "aggregate": 450, "Biology": 55, "Chemistry": 50 }
+      },
+      {
+        "name": "Veterinary Science",
+        "category": "STEM",
+        "allowed_sections": ["Science"],
+        "min_scores": { "aggregate": 500, "Biology": 60, "Chemistry": 55 }
+      },
+      {
+        "name": "Fisheries and Aquatic Science",
+        "category": "STEM",
+        "allowed_sections": ["Science"],
+        "min_scores": { "aggregate": 460, "Biology": 55, "Geography": 50 }
+      },
+      {
+        "name": "ICT and Information Systems",
+        "category": "STEM",
+        "allowed_sections": ["Science"],
+        "min_scores": { "aggregate": 480, "ICT": 65, "Mathematics": 55 }
+      },
+      {
+        "name": "Computer Science",
+        "category": "STEM",
+        "allowed_sections": ["Science"],
+        "min_scores": { "aggregate": 500, "Mathematics": 62, "English": 58 }
+      },
+      {
+        "name": "Commerce",
+        "category": "Arts",
+        "allowed_sections": ["Art", "Science"],
+        "min_scores": { "aggregate": 470, "Accounting": 60, "Mathematics": 55 }
+      },
+      {
+        "name": "Accounting",
+        "category": "Arts",
+        "allowed_sections": ["Art", "Science"],
+        "min_scores": { "aggregate": 470, "Accounting": 60 }
+      },
+      {
+        "name": "Economics",
+        "category": "Arts",
+        "allowed_sections": ["Art", "Science"],
+        "min_scores": { "aggregate": 470, "Mathematics": 55, "English": 55 }
+      }
+    ]
+  },
+  {
+    "name": "Dr. John Garang Memorial University",
+    "courses": [
+      {
+        "name": "History and Political Science",
+        "category": "Arts",
+        "allowed_sections": ["Art"],
+        "min_scores": { "aggregate": 440, "History": 60, "Civics": 55 }
+      },
+      {
+        "name": "Geography and Environmental Studies",
+        "category": "Arts",
+        "allowed_sections": ["Art", "Science"],
+        "min_scores": { "aggregate": 450, "Geography": 60, "Biology": 50 }
+      },
+      {
+        "name": "Religious Studies",
+        "category": "Arts",
+        "allowed_sections": ["Art"],
+        "min_scores": { "aggregate": 400, "Religion": 60 }
+      },
+      {
+        "name": "Fine Arts",
+        "category": "Arts",
+        "allowed_sections": ["Art"],
+        "min_scores": { "aggregate": 420, "English": 50 }
+      },
+      {
+        "name": "Fashion Design",
+        "category": "Arts",
+        "allowed_sections": ["Art"],
+        "min_scores": { "aggregate": 420, "English": 50 }
+      },
+      {
+        "name": "Development Studies",
+        "category": "Arts",
+        "allowed_sections": ["Art"],
+        "min_scores": { "aggregate": 440, "English": 55 }
+      },
+      {
+        "name": "Public Administration",
+        "category": "Arts",
+        "allowed_sections": ["Art"],
+        "min_scores": { "aggregate": 450, "English": 55, "Civics": 55 }
+      }
+    ]
+  }
+]
